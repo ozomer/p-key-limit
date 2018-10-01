@@ -37,6 +37,9 @@
     "url": "https://github.com/ozomer/p-key-limit/issues"
   },
   "homepage": "https://github.com/ozomer/p-key-limit#readme",
+  "xo": {
+      "space": true
+  },
   "dependencies": {
     "p-limit": "2.0.0"
   },

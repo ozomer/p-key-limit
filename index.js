@@ -2,15 +2,15 @@
 const pLimit = require('p-limit');
 
 module.exports = concurrency => {
-  if (!(1 <= concurrency)) {
-    throw new TypeError("Expected `concurrency` to be a number from 1 and up");
+  if (!(concurrency >= 1)) {
+    throw new TypeError('Expected `concurrency` to be a number from 1 and up');
   }
   const cache = new Map();
   const generator = async (key, ...args) => {
     if (!cache.has(key)) {
       cache.set(key, {
-        "count": 0,
-        "limit": pLimit(concurrency)
+        count: 0,
+        limit: pLimit(concurrency)
       });
     }
     const limiter = cache.get(key);
@@ -27,6 +27,6 @@ module.exports = concurrency => {
   generator.getSize = key => {
     const limiter = cache.get(key);
     return (limiter ? limiter.count : 0);
-  }
+  };
   return generator;
 };

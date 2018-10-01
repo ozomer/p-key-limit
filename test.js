@@ -31,7 +31,7 @@ test('keys: 2, concurrency: 1', async t => {
 
 test('keys: 4, concurrency: 5', async t => {
   const concurrency = 5;
-  let runnings = [0, 0, 0, 0];
+  const runnings = [0, 0, 0, 0];
 
   const limit = m(concurrency);
 
@@ -85,22 +85,22 @@ test('tests value of getSize', async t => {
   const limit = m(5);
   await Promise.all(['key1', 'key2', 'key3'].map(async key => {
     t.is(limit.getSize(key), 0);
-  
+
     const runningPromise1 = limit(key, () => delay(1000));
     t.is(limit.getSize(key), 1);
-  
+
     await runningPromise1;
     t.is(limit.getSize(key), 0);
-  
+
     const immediatePromises = Array.from({length: 5}, () => limit(key, () => delay(1000)));
     const delayedPromises = Array.from({length: 3}, () => limit(key, () => delay(1000)));
-  
+
     t.is(limit.getSize(key), 5 + 3);
-  
+
     await Promise.all(immediatePromises);
     t.is(limit.getSize(key), 3);
-  
-    await Promise.all(delayedPromises);  
+
+    await Promise.all(delayedPromises);
     t.is(limit.getSize(key), 0);
   }));
 });
