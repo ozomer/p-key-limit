@@ -1,4 +1,4 @@
-# p-limit [![Build Status](https://travis-ci.org/ozomer/p-key-limit.svg?branch=master)](https://travis-ci.org/ozomer/p-key-limit)
+# p-key-limit [![Build Status](https://travis-ci.org/ozomer/p-key-limit.svg?branch=master)](https://travis-ci.org/ozomer/p-key-limit)
 
 > Run multiple promise-returning & async functions with limited concurrency by key.
 > The package maintains a mapping of [p-limit](https://github.com/sindresorhus/p-limit) object per key, so when the limit is called with the same key the promises' execution will be limited (following the concurrency value) but when used with different keys the promises' execution will not limit each other. The package automatically deletes the [p-limit](https://github.com/sindresorhus/p-limit) objects when they are no longer needed.
