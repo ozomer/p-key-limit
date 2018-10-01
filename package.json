@@ -1,0 +1,51 @@
+{
+  "name": "p-key-limit",
+  "version": "1.0.0",
+  "description": "Run multiple promise-returning & async functions with limited concurrency by key",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ozomer/p-key-limit.git"
+  },
+  "keywords": [
+    "promise",
+    "limit",
+    "limited",
+    "concurrency",
+    "throttle",
+    "throat",
+    "rate",
+    "batch",
+    "ratelimit",
+    "task",
+    "queue",
+    "async",
+    "await",
+    "promises",
+    "bluebird",
+    "map",
+    "key",
+    "keyed",
+    "multi"
+  ],
+  "author": "Oren Zomer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ozomer/p-key-limit/issues"
+  },
+  "homepage": "https://github.com/ozomer/p-key-limit#readme",
+  "dependencies": {
+    "p-limit": "2.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "delay": "^3.0.0",
+    "in-range": "^1.0.0",
+    "random-int": "^1.0.0",
+    "time-span": "^2.0.0",
+    "xo": "*"
+  }
+}
