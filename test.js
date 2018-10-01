@@ -7,19 +7,25 @@ import m from '.';
 
 test('keys: 2, concurrency: 1', async t => {
   const input = [
-    ['a', 10, 300],
-    ['a', 20, 200],
-    ['a', 30, 100],
-    ['b', 10, 310],
-    ['b', 20, 210],
-    ['b', 30, 110]
+    ['a', 'a1', 300],
+    ['a', 'a2', 200],
+    ['a', 'a3', 100],
+    ['b', 'b1', 310],
+    ['b', 'b2', 210],
+    ['b', 'b3', 110]
   ];
+  const resultEvaluationOrder = [];
 
   const end = timeSpan();
   const limit = m(1);
-  const mapper = ([key, val, ms]) => limit(key, () => delay(ms).then(() => val));
+  const mapper = ([key, val, ms]) => limit(key, () => delay(ms).then(() => {
+    resultEvaluationOrder.push(val);
+    return val;
+  }));
 
-  t.deepEqual(await Promise.all(input.map(mapper)), [10, 10, 20, 20, 30, 30]);
+  t.deepEqual(await Promise.all(input.map(mapper)), ['a1', 'a2', 'a3', 'b1', 'b2', 'b3']);
+  t.deepEqual(resultEvaluationOrder, ['a1', 'b1', 'a2', 'b2', 'a3', 'b3']);
+
   t.true(inRange(end(), 620, 690));
 });
 
